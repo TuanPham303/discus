@@ -1,11 +1,7 @@
-const headerStyle = () => {
-  const style = {
-    wrapper: {
-      backgroundColor: 'red',
-    }
-  };
-
-  return style;
-}
+const headerStyle = {
+  wrapper: {
+    backgroundColor: 'red',
+  }
+};
 
 export default headerStyle;

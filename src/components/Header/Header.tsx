@@ -3,9 +3,13 @@ import injectSheet from 'react-jss';
 
 import headerStyle from './Header.style';
 
-function Header({ classes }) {
+interface PropsType {
+  classes: object,
+}
+
+const Header = ({ classes }: PropsType) => {
   return (
-    <div>
+    <div className={classes.wrapper}>
       Discus
     </div>
   )
