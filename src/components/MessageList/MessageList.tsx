@@ -1,7 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
-import headerStyle from './Header.style';
+import messageListStyle from './MessageList.style';
 
 interface PropsType {
   classes: {
@@ -9,12 +9,12 @@ interface PropsType {
   },
 }
 
-const Header: React.FC<PropsType> = ({ classes }) => {
+const MessageList: React.FC<PropsType> = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
-      Discus
+      List of messages
     </div>
   )
 }
 
-export default injectSheet(headerStyle)(Header);
+export default injectSheet(messageListStyle)(MessageList);
