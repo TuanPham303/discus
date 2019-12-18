@@ -1,20 +1,20 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
-import headerStyle from './Header.style';
+import chatBarStyle from './ChatBar.style';
 
 interface PropsType {
   classes: {
     wrapper: string,
-  },
+  }
 }
 
-const Header: React.FC<PropsType> = ({ classes }) => {
+const ChatBar: React.FC<PropsType> = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
-      Discus
+      <input></input>
     </div>
   )
 }
 
-export default injectSheet(headerStyle)(Header);
+export default injectSheet(chatBarStyle)(ChatBar);

@@ -1,11 +1,15 @@
 import React from 'react';
 
-import { Header } from '..';
+import { Header, MessageList, ContextProvider, ChatBar } from '..';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header />
+      <ContextProvider>
+        <Header />
+        <MessageList />
+        <ChatBar />
+      </ContextProvider>
     </div>
   );
 }
