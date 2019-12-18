@@ -3,13 +3,13 @@ import injectSheet from 'react-jss';
 
 import messageListStyle from './MessageList.style';
 
-interface PropsType {
+interface IProps {
   classes: {
     wrapper: string,
   },
 }
 
-const MessageList: React.FC<PropsType> = ({ classes }) => {
+const MessageList: React.FC<IProps> = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
       List of messages

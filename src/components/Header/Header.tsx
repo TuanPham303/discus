@@ -3,13 +3,13 @@ import injectSheet from 'react-jss';
 
 import headerStyle from './Header.style';
 
-interface PropsType {
+interface IProps {
   classes: {
     wrapper: string,
   },
 }
 
-const Header: React.FC<PropsType> = ({ classes }) => {
+const Header: React.FC<IProps> = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
       Discus

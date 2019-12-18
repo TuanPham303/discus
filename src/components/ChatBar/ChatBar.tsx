@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import injectSheet from 'react-jss';
 
 import chatBarStyle from './ChatBar.style';
+import { Context } from '..';
 
-interface PropsType {
+interface IProps {
   classes: {
     wrapper: string,
   }
 }
 
-const ChatBar: React.FC<PropsType> = ({ classes }) => {
+const ChatBar: React.FC<IProps> = ({ classes }) => {
+  const context = useContext(Context);
+
+  console.log(context)
+
   return (
     <div className={classes.wrapper}>
       <input></input>
