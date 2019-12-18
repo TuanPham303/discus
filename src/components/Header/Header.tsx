@@ -4,7 +4,9 @@ import injectSheet from 'react-jss';
 import headerStyle from './Header.style';
 
 interface PropsType {
-  classes: object,
+  classes: {
+    wrapper: string,
+  },
 }
 
 const Header = ({ classes }: PropsType) => {
