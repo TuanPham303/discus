@@ -1,5 +1,10 @@
 import { createContext } from 'react';
 
-const Context = createContext({});
+interface IContext {
+  messageList?: Array<object>,
+  addMessage?: any,
+}
+
+const Context = createContext<IContext>({});
 
 export default Context;

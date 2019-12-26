@@ -1,6 +1,7 @@
 const messageListStyle = {
   wrapper: {
-    border: [1, 'solid', 'black'],
+    height: '90vh',
+    overflowY: 'scroll',
   }
 }
 

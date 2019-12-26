@@ -6,28 +6,36 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const ContextProvider: React.FC<IProps> = ({ children }) => {
-  const [messageList, setMessageList] = useState([]);
+interface IMessage {
+  // id: number,
+  // user: string,
+  message: string,
+}
 
-  const handleSendMessage = (input: object) => {
-    setMessageList((old) => old.push(input))
-    return;
+const ContextProvider: React.FC<IProps> = ({ children }) => {
+  const [messageList, setMessageList] = useState<Array<object>>([]);
+
+  const addMessage = (message: IMessage) => {
+    setMessageList([...messageList, message]);
   }
 
-  const state = {
+  const state: object = {
     messageList,
   }
 
-  const actions = {
-    
+  const actions: object = {
+    addMessage,
   }
 
-  const context = {};
+  const context: object = {
+    ...state,
+    ...actions,
+  };
+
   return (
     <Context.Provider value={context}>
       {children}  
-    </Context.Provider> 
-    
+    </Context.Provider>
   )
 }
 

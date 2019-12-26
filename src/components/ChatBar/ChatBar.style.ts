@@ -1,6 +1,7 @@
 const chatBarStyle = {
   wrapper: {
-    border: [1, 'solid', 'black'],
+    backgroundColor: 'yellow',
+    height: '5vh',
   }
 }
 

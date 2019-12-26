@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import injectSheet from 'react-jss';
 
 import chatBarStyle from './ChatBar.style';
@@ -11,13 +11,22 @@ interface IProps {
 }
 
 const ChatBar: React.FC<IProps> = ({ classes }) => {
-  const context = useContext(Context);
+  const { addMessage } = useContext(Context);
+  const inputEl = useRef<HTMLInputElement>(null);
 
-  console.log(context)
+  const handleSubmit = () => {
+    if (!inputEl.current || !addMessage) { return; }
+    
+    const message = {
+      message: inputEl.current.value
+    }
+    addMessage(message);
+  }
 
   return (
     <div className={classes.wrapper}>
-      <input></input>
+      <input type="text" ref={inputEl}/>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   )
 }

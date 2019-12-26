@@ -1,10 +1,18 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 
 import { Header, MessageList, ContextProvider, ChatBar } from '..';
+import appStyle from './App.style';
 
-const App: React.FC = () => {
+interface IProps {
+  classes: {
+    wrapper: string,
+  }
+}
+
+const App: React.FC<IProps> = ({ classes }) => {
   return (
-    <div className="App">
+    <div className={classes.wrapper}>
       <ContextProvider>
         <Header />
         <MessageList />
@@ -14,4 +22,4 @@ const App: React.FC = () => {
   );
 }
 
-export default App;
+export default injectSheet(appStyle)(App);
