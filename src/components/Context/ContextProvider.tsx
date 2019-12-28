@@ -14,6 +14,7 @@ interface IMessage {
 
 const ContextProvider: React.FC<IProps> = ({ children }) => {
   const [messageList, setMessageList] = useState<Array<object>>([]);
+  const [userName, setUserName] = useState<string>()
 
   const addMessage = (message: IMessage) => {
     setMessageList([...messageList, message]);
@@ -21,10 +22,12 @@ const ContextProvider: React.FC<IProps> = ({ children }) => {
 
   const state: object = {
     messageList,
+    userName,
   }
 
   const actions: object = {
     addMessage,
+    setUserName,
   }
 
   const context: object = {

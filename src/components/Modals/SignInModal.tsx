@@ -1,0 +1,41 @@
+import React, { useState, useRef, useCallback } from 'react';
+import injectSheet from 'react-jss';
+import Modal from 'react-modal';
+
+import signInModalStyle from './SignInModal.style';
+import { SubmitButton } from '..';
+
+interface IProps {
+  classes: {
+    wrapper: string,
+  },
+}
+
+const userName = sessionStorage.getItem('userName');
+
+const SignInModal: React.FC<IProps> = ({ classes }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const userNameInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = useCallback((): void => {
+    if (!userNameInputRef.current || !userNameInputRef.current.value) { return; }
+
+    setIsOpen(false);
+    sessionStorage.setItem('userName', userNameInputRef.current.value);
+  }, [])
+
+  return (
+    <Modal
+      isOpen={!userName && isOpen}
+      style={classes.wrapper}
+    >
+      <SubmitButton onClick={handleSubmit}/>
+      <input 
+        ref={userNameInputRef}
+        placeholder='What is you name?'
+      />
+    </Modal>
+  )
+}
+
+export default injectSheet(signInModalStyle)(SignInModal);

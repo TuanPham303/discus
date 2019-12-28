@@ -1,7 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
-import { Header, MessageList, ContextProvider, ChatBar } from '..';
+import { Header, MessageList, ContextProvider, ChatBar, SignInModal } from '..';
 import appStyle from './App.style';
 
 interface IProps {
@@ -17,6 +17,7 @@ const App: React.FC<IProps> = ({ classes }) => {
         <Header />
         <MessageList />
         <ChatBar />
+        <SignInModal />
       </ContextProvider>
     </div>
   );
