@@ -3,8 +3,7 @@ import { createContext } from 'react';
 interface IContext {
   messageList?: Array<object>,
   addMessage?: any,
-  userName?: string,
-  setUserName?: any,
+  socketClient?: any,
 }
 
 const Context = createContext<IContext>({});

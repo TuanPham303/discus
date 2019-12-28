@@ -13,6 +13,17 @@ interface IProps {
 
 const userName = sessionStorage.getItem('userName');
 
+const modalStyle = {
+  content : {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+}
+
 const SignInModal: React.FC<IProps> = ({ classes }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const userNameInputRef = useRef<HTMLInputElement>(null);
@@ -27,7 +38,7 @@ const SignInModal: React.FC<IProps> = ({ classes }) => {
   return (
     <Modal
       isOpen={!userName && isOpen}
-      style={classes.wrapper}
+      style={modalStyle}
     >
       <SubmitButton onClick={handleSubmit}/>
       <input 

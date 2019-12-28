@@ -1,8 +1,8 @@
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useContext } from 'react';
 import injectSheet from 'react-jss';
 
 import chatBarStyle from './ChatBar.style';
-import { socketClient } from '..';
+import { Context } from '..';
 
 interface IProps {
   classes: {
@@ -12,7 +12,8 @@ interface IProps {
 
 
 const ChatBar: React.FC<IProps> = ({ classes }) => {
-  const inputMessageEl = useRef<HTMLInputElement>(null); 
+  const inputMessageEl = useRef<HTMLInputElement>(null);
+  const { socketClient } = useContext(Context);
   
   const handleSubmit = useCallback((): void => {
     if (!inputMessageEl.current) { return; }
@@ -20,10 +21,11 @@ const ChatBar: React.FC<IProps> = ({ classes }) => {
     const userName = sessionStorage.getItem('userName');
     const message = {
       userName: userName, 
-      message: inputMessageEl.current.value
+      message: inputMessageEl.current.value,
+      id: Date.now().toString(),
     }
     socketClient.emit('messageClientToServer', message)
-  }, [])
+  }, [socketClient])
 
   return (
     <div className={classes.wrapper}>
