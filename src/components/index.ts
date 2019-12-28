@@ -6,5 +6,6 @@ export { default as MessageList } from './MessageList';
 export { default as ChatBar } from './ChatBar';
 export { default as Context, ContextProvider } from './Context';
 
+//TODO need to separate this variable into a different file
 const endPoint = 'http://localhost:3001';
 export const socketClient = socketIOClient(endPoint);
