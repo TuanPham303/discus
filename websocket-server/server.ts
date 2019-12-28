@@ -7,10 +7,14 @@ const PORT = 3001;
 
 const app = express();
 const httpServer = http.createServer(app);
-const io = socketIO(httpServer);
+const socket = socketIO(httpServer);
 
-io.on('connection', () => {
-  console.log('a user connected');
+socket.on('connection', (connection) => {
+  console.log('An user has connected');
+  connection.on('disconnect', () => console.log('An user has disconnected'))
+  connection.on('messageClientToServer', (message) => {
+    socket.emit('messageServerToClient', message)
+  })
 })
 
 app.get('/', (req, res) => {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import injectSheet from 'react-jss';
 
-import { Context } from '..';
+import { Context, socketClient } from '..';
 import messageListStyle from './MessageList.style';
 
 interface IProps {
@@ -14,12 +14,14 @@ const renderMessageList = (messageList) => {
   if (!messageList || messageList.length <= 0) { return; }
 
   return messageList.map((m) => (
-    <div>{m.message}</div>
+    <div>{`${m.userName}: ${m.message}`}</div>
   ))
 }
 
 const MessageList: React.FC<IProps> = ({ classes }) => {
-  const { messageList } = useContext(Context);
+  const { messageList, addMessage } = useContext(Context);
+
+  socketClient.on('messageServerToClient', (message) => addMessage(message))
 
   return (
     <div className={classes.wrapper}>

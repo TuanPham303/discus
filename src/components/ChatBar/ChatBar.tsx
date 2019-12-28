@@ -1,8 +1,8 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import injectSheet from 'react-jss';
 
 import chatBarStyle from './ChatBar.style';
-import { Context } from '..';
+import { socketClient } from '..';
 
 interface IProps {
   classes: {
@@ -11,21 +11,23 @@ interface IProps {
 }
 
 const ChatBar: React.FC<IProps> = ({ classes }) => {
-  const { addMessage } = useContext(Context);
-  const inputEl = useRef<HTMLInputElement>(null);
+  const inputMessageEl = useRef<HTMLInputElement>(null);
+  const inputNameEl = useRef<HTMLInputElement>(null);
 
   const handleSubmit = () => {
-    if (!inputEl.current || !addMessage) { return; }
+    if (!inputMessageEl.current || !inputNameEl.current) { return; }
     
     const message = {
-      message: inputEl.current.value
+      userName: inputNameEl.current.value, 
+      message: inputMessageEl.current.value
     }
-    addMessage(message);
+    socketClient.emit('messageClientToServer', message)
   }
 
   return (
     <div className={classes.wrapper}>
-      <input type="text" ref={inputEl}/>
+      <input type="text" ref={inputNameEl}/>
+      <input type="text" ref={inputMessageEl}/>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   )
