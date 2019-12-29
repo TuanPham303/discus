@@ -7,13 +7,14 @@ import headerStyle from './Header.style';
 interface IProps {
   classes: {
     wrapper: string,
+    logo: string,
   },
 }
 
 const Header: React.FC<IProps> = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
-      Discus
+      <div className={classes.logo}>DISCUS</div>
       <UserCount />
     </div>
   )

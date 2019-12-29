@@ -1,8 +1,17 @@
 import React, { useContext, useState } from 'react';
+import injectSheet from 'react-jss';
 
+import { ReactComponent as IconOnline } from '../../icons/iconOnline.svg'
 import { Context } from '..';
+import userCountStyle from './UserCount.style';
 
-const UserCount: React.FC = () => {
+interface Props {
+  classes: {
+    wrapper: string,
+  }
+}
+
+const UserCount: React.FC<Props> = ({ classes }) => {
   const { socketClient } = useContext(Context);
   const [userCount, setUserCount] = useState<number>(0);
 
@@ -11,10 +20,11 @@ const UserCount: React.FC = () => {
   })
 
   return (
-    <span>
-      {`${userCount} online`}
-    </span>
+    <div className={classes.wrapper}>
+      <IconOnline />
+      <div>{`${userCount}`}</div>
+    </div>
   )
 }
 
-export default UserCount;
+export default injectSheet(userCountStyle)(UserCount);

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import injectSheet from 'react-jss';
 
 import { Context } from '..';
+import Message from './Message';
 import messageListStyle from './MessageList.style';
 
 interface IProps {
@@ -14,7 +15,11 @@ const renderMessageList = (messageList) => {
   if (!messageList || messageList.length <= 0) { return; }
 
   return messageList.map((m) => (
-    <div key={m.id}>{`${m.userName}: ${m.message}`}</div>
+    <Message
+      key={m.id}
+      userName={m.userName}
+      message={m.message}
+    />
   ))
 }
 

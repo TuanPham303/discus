@@ -14,11 +14,11 @@ interface IMessage {
   message: string,
 }
 
+const socketClient = socketIOClient(END_POINT);
+
 const ContextProvider: React.FC<IProps> = ({ children }) => {
   const [messageList, setMessageList] = useState<Array<object>>([]);
   const [userName, setUserName] = useState<string>()
-
-  const socketClient = socketIOClient(END_POINT);
 
   const addMessage = (message: IMessage) => {
     setMessageList([...messageList, message]);

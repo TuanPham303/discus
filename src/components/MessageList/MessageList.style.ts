@@ -1,6 +1,6 @@
 const messageListStyle = {
   wrapper: {
-    height: '90vh',
+    height: '85vh',
     overflowY: 'scroll',
   }
 }
