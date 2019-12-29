@@ -7,18 +7,30 @@ const PORT = 3001;
 
 const app = express();
 const httpServer = http.createServer(app);
-const socket = socketIO(httpServer);
+export const socket = socketIO(httpServer);
 
-socket.on('connection', (connection) => {
-  console.log('An user has connected');
-  connection.on('disconnect', () => console.log('An user has disconnected'))
+let userCount = 0;
+const openCloseConnection = (connection) => {
+  userCount += 1;
+  socket.emit('userCount', userCount);
+
+  connection.on('disconnect', () => {
+    userCount -= 1;
+    socket.emit('userCount', userCount)
+  })
+}
+
+const broadcastMessage = (connection) => {
   connection.on('messageClientToServer', (message) => {
     socket.emit('messageServerToClient', message)
   })
-})
+}
 
-app.get('/', (req, res) => {
-  res.send('Hello');
-})
+const handleConnection = (connection) => {
+  openCloseConnection(connection);
+  broadcastMessage(connection);
+}
+
+socket.on('connect', handleConnection)
 
 httpServer.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));

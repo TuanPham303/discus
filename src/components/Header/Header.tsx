@@ -1,6 +1,7 @@
 import React from 'react';
 import injectSheet from 'react-jss';
 
+import { UserCount } from '..';
 import headerStyle from './Header.style';
 
 interface IProps {
@@ -13,6 +14,7 @@ const Header: React.FC<IProps> = ({ classes }) => {
   return (
     <div className={classes.wrapper}>
       Discus
+      <UserCount />
     </div>
   )
 }
